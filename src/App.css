@@ -1,42 +1,330 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/*──────────────────────────────────────────────────────────────────
+  Theme & Base
+──────────────────────────────────────────────────────────────────*/
+:root {
+  --bg:      #121212;
+  --fg:      #e0e0e0;
+  --nav:     #1f1f1f;
+  --card:    #1a1a1a;
+  --link:    #90caf9;
+  --danger:  #2a2a2a;
+  --radius:  6px;
+  --gap:     1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:      #ffffff;
+    --fg:      #111111;
+    --nav:     #f5f5f5;
+    --card:    #fafafa;
+    --link:    #1976d2;
+    --danger:  #e0e0e0;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+/*──────────────────────────────────────────────────────────────────
+  Layout
+──────────────────────────────────────────────────────────────────*/
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-sidebar {
+  position: relative;
+  flex-shrink: 0;
+  width: 200px;
+  background: var(--nav);
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.app-content {
+  flex: 1;
   padding: 2rem;
-  text-align: center;
+  overflow-y: auto;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/*──────────────────────────────────────────────────────────────────
+  Navigation
+──────────────────────────────────────────────────────────────────*/
+.app-nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3.5rem;
+  gap: 1.5rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-link {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: none;
+  padding-left: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.nav-link:hover {
+  text-decoration: underline;
 }
 
-.card {
-  padding: 2em;
+.sidebar-peek {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 120px;
+  height: auto;
+  display: block;
 }
 
-.read-the-docs {
-  color: #888;
+/*──────────────────────────────────────────────────────────────────
+  Generic Page Wrapper & Cards
+──────────────────────────────────────────────────────────────────*/
+.page {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  margin-bottom: var(--gap);
+}
+
+/* Card component (used on profile page) */
+.card, .profile-card {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  margin-bottom: 2rem;
+}
+
+/*──────────────────────────────────────────────────────────────────
+  Buttons
+──────────────────────────────────────────────────────────────────*/
+.button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.2s ease;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Primary: main calls‑to‑action */
+.button--primary {
+  background: var(--link);
+  color: var(--bg);
+}
+
+.button--primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* Secondary: Edit buttons (match link color) */
+.button--secondary {
+  background: var(--bg);
+  color: var(--link);
+  border: 2px solid var(--link);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background: var(--link);
+  color: var(--bg);
+}
+
+/* Danger: Delete buttons (muted grey) */
+.button--danger {
+  background: var(--danger);
+  color: var(--fg);
+}
+
+.button--danger:hover:not(:disabled) {
+  opacity: 0.8;
+}
+
+/* ──────── Welcome Styles ──────── */
+.page--welcome {
+  padding: 3rem 2rem;
+}
+
+.welcome-header {
+  margin-bottom: 1rem;
+
+  background-image:
+    linear-gradient(135deg, var(--link) 0%, #42a5f5 60%, #1976d2 100%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 2px, transparent 2px, transparent 6px);
+  background-blend-mode: overlay;
+
+  padding: 1.75rem;
+  border-radius: var(--radius);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.welcome-title {
+  color: #3d3d3d;
+  padding-left: 0.5rem;
+  font-size: 2.75rem;
+}
+
+.welcome-subtitle {
+  color: #90caf9;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.welcome-image {
+  display: block;        
+  max-width: 40%;
+  height: auto;
+  border-radius: var(--radius);
+  margin-bottom: 2rem;      
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.welcome-content {
+  margin-top: 2rem;
+  padding-left: 8%;
+}
+
+.welcome-content p {
+  font-size: 1.25rem;
+  line-height: 1.75;
+  margin: 0 0 1.5rem;
+}
+
+
+/*──────────────────────────────────────────────────────────────────
+  Static Overview
+──────────────────────────────────────────────────────────────────*/
+.static-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.static-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.static-link {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.static-link:hover {
+  text-decoration: underline;
+}
+
+.static-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/*──────────────────────────────────────────────────────────────────
+  Forms
+──────────────────────────────────────────────────────────────────*/
+.form {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--fg);
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--link);
+  box-shadow: 0 0 0 3px rgba(144,193,249,0.3);
+}
+
+/* Checkbox grid */
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+  gap: 0.75rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-error {
+  color: #f44336;
+  margin-bottom: 1rem;
+}
+
+/*──────────────────────────────────────────────────────────────────
+  Profile Page Adjustments
+──────────────────────────────────────────────────────────────────*/
+.profile-field {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.profile-label {
+  width: 100px;
+  font-weight: 600;
+}
+
+.profile-value {
+  flex: 1;
+}
+
+.profile-actions {
+  display: flex;
+  gap: var(--gap);
+}
+
+.profile-back {
+  margin-top: 1.5rem;
 }
