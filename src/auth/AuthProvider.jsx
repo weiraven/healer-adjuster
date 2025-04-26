@@ -1,4 +1,3 @@
-// src/auth/AuthProvider.jsx
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../client';
 
@@ -21,11 +20,10 @@ export function AuthProvider({ children }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  // wrap the new v2 methods
-  const signUp = ({ email, password }) =>
+  const signUp = (email, password) =>
     supabase.auth.signUp({ email, password });
-
-  const signIn = ({ email, password }) =>
+  
+  const signIn = (email, password) =>
     supabase.auth.signInWithPassword({ email, password });
 
   const signOut = () => supabase.auth.signOut();
