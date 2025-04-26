@@ -4,35 +4,56 @@ Submitted by: **Raven Wei**
 
 This web app: **FFXIV raid planning perfected at a healer's expense.**
 
-Time spent: **6** hours spent in total
+Time spent: **15** hours spent in total
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [x] **The web app contains a page that features a create form to add a new crewmate**
-    - Users can name the crewmate
-    - Users can set the crewmate’s attributes by clicking on one of several values
-- [x] **The web app includes a summary page of all the user’s added crewmatese**
-    -  The web app contains a summary page dedicated to displaying all the crewmates the user has made so far
-    -  The summary page is sorted by creation date such that the most recently created crewmates appear at the top
-- [x] **A previously created crewmate can be updated from the list of crewmates in the summary page**
-    - Each crewmate has an edit button that will take users to an update form for the relevant crewmate
-    - Users can see the current attributes of their crewmate on the update form
-    - After editing the crewmate's attribute values using the form, the user can immediately see those changes reflected in the update form and on the summary page 
-- [x] **A previously created crewmate can be deleted from the crewmate list**
-    - Using the edit form detailed in the previous _crewmates can be updated_ feature, there is a button that allows users to delete that crewmate
-    - After deleting a crewmate, the crewmate should no longer be visible in the summary page
-- [x] **Each crewmate has a direct, unique URL link to an info page about them**
-    - Clicking on a crewmate in the summary page navigates to a detail page for that crewmate
-    - The detail page contains extra information about the crewmate not included in the summary page
-    - Users can navigate to to the edit form from the detail page
+- [x] **Web app includes a create form that allows the user to create posts**
+  - Form requires users to add a post title
+  - Forms should have the *option* for users to add: 
+    - additional textual content
+    - an image added as an external image URL
+- [x] **Web app includes a home feed displaying previously created posts**
+  - Web app must include home feed displaying previously created posts
+  - By default, each post on the posts feed should show only the post's:
+    - creation time
+    - title 
+    - upvotes count
+  - Clicking on a post should direct the user to a new page for the selected post
+- [x] **Users can view posts in different ways**
+  - Users can sort posts by either:
+    -  creation time
+    -  upvotes count
+- [x] **Users can interact with each post in different ways**
+  - The app includes a separate post page for each created post when clicked, where any additional information is shown, including:
+    - content
+    - image
+    - comments
+  - Each post includes an upvote button on the post page. 
+    - Each click increases the post's upvotes count by one
+    - Users can upvote any post any number of times
+- [x] **A post that a user previously created can be edited or deleted from its post pages**
+  - After a user creates a new post, they can go back and edit the post
+  - A previously created post can be deleted from its post page
+
+The following **optional** features are implemented:
+
+- [x] Web app implements ACTUAL authentication.
+  - Users can only edit and delete posts or delete comments by entering the secret key, which is set by the user during post creation
+  - Only the original user author of a post can update or delete it
+
+The following **additional** features are implemented:
+
+- [x] Logged in users can create additional teams (statics) and add members to them.
+- [x] Users can schedule events for their static using a calendar feature.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/weiraven/healer-adjuster/blob/main/public/images/app-demo.gif' title='Video Walkthrough' width='1000' alt='Video Walkthrough' />
+<img src='https://github.com/weiraven/healer-adjuster/blob/main/public/images/updated-demo.gif' title='Video Walkthrough' width='1000' alt='Video Walkthrough' />
 
 GIF created with [ScreenToGif](https://www.screentogif.com/) for Windows
 
