@@ -263,7 +263,7 @@ body {
   Forms
 ──────────────────────────────────────────────────────────────────*/
 .form {
-  max-width: 480px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 1.5rem;
 }
@@ -296,6 +296,12 @@ body {
   outline: none;
   border-color: var(--link);
   box-shadow: 0 0 0 3px rgba(144,193,249,0.3);
+}
+
+.form-actions {
+  display: flex; 
+  gap: var(--gap);    /* uses your existing spacing variable */
+  margin-top: 1rem;   /* a little breathing room above */
 }
 
 /* Checkbox grid */
@@ -340,4 +346,43 @@ body {
 
 .profile-back {
   margin-top: 1.5rem;
+}
+
+/*──────────────── Auth Page ─────────────────*/
+.page--auth {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+}
+
+.auth-switch {
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--fg);
+}
+
+.auth-switch a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* Raid Schedule page */
+.page--schedule,
+.page--schedule-create {
+  padding: 1rem;
+}
+
+.schedule-actions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.schedule-content p {
+  font-size: 1.1rem;
 }
