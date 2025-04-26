@@ -1,0 +1,117 @@
+/* ─ Modal Overlay ─ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ─ Modal Box ─ */
+.modal {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  width: 320px;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* ─ Modal Title ─ */
+.modal-title {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  color: var(--link);
+}
+
+/* ─ Form Groups ─ */
+.modal .form-group {
+  margin-bottom: 1rem;
+}
+
+.modal .form-label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.modal .form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* ─ Modal Actions ─ */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+/* ─── Toolbar Buttons ─── */
+.fc-button {
+    background: var(--bg);
+    color: var(--link);
+    border: 1px solid var(--link);
+    border-radius: var(--radius);
+    padding: 0.5em 0.75em;
+    text-transform: none;
+    font-weight: 500;
+  }
+  .fc-button:not(.fc-button-active):hover {
+    background: var(--link);
+    color: var(--bg);
+  }
+  .fc-button-active {
+    background: var(--link);
+    color: var(--bg);
+  }
+  
+  /* ─── Today Highlight ─── */
+  .fc .fc-day-today {
+    background: rgba(144, 193, 249, 0.15) !important;
+  }
+  
+  /* ─── Day Grid Header ─── */
+  .fc .fc-col-header-cell-cushion {
+    color: #323232 !important; 
+    font-weight: 600;
+  }
+  
+  /* ─── Grid Background ─── */
+  .fc .fc-scrollgrid {
+    background: var(--card) !important;
+  }
+  
+  /* ─── Events ─── */
+  .fc .fc-event, 
+  .fc .fc-daygrid-event {
+    background-color: var(--link) !important;
+    border: none !important;
+    border-radius: var(--radius) !important;
+    color: var(--bg) !important;
+    padding: 0.2em 0.4em !important;
+    font-size: 0.875rem;
+  }
+  
+  /* ─── TimeGrid Events ─── */
+  .fc .fc-timegrid-event {
+    background-color: var(--link) !important;
+    border: none !important;
+    border-radius: var(--radius) !important;
+    color: var(--bg) !important;
+  }
+  
+  /* ─── Misc tweaks ─── */
+  .fc .fc-daygrid-day-top {
+    padding: 0.5em;
+    color: var(--fg);
+  }
+  
+  .fc .fc-daygrid-day-frame {
+    min-height: 150px;
+  }

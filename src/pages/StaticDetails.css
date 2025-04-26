@@ -1,0 +1,59 @@
+/* Page wrapper */
+.page--static-detail {
+    padding: 2rem;
+  }
+  
+  /* Header styles */
+  .static-header {
+    margin-bottom: 2rem;
+  }
+  .static-title {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--fg);
+  }
+  .static-description {
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #ccfaa6;
+  }
+  
+  /* Members section */
+  .static-members {
+    margin-bottom: 2rem;
+  }
+  .static-members h3 {
+    margin-bottom: 1rem;
+  }
+  .static-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .static-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .static-link {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .static-link:hover {
+    text-decoration: underline;
+  }
+  .static-item-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  /* Static actions */
+  .static-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }

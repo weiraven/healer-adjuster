@@ -42,10 +42,10 @@ function Login() {
         <button type="submit" className="button button--primary">
           Log In
         </button>
-      </form>
-      <p>
+        <p className="auth-switch">
         Need an account? <Link to="/signup">Sign Up</Link>
-      </p>
+        </p>
+      </form>
     </div>
   );
 }

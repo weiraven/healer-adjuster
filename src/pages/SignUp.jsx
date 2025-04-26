@@ -1,19 +1,44 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../auth/AuthProvider';
+import React, { useState }      from 'react';
+import { useNavigate, Link }    from 'react-router-dom';
+import { supabase }             from '../client';
 
-function SignUp() {
+export default function SignUp() {
   const [email, setEmail]       = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError]       = useState('');
-  const { signUp }              = useAuth();
-  const nav                      = useNavigate();
+  const navigate                = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { error } = await signUp(email, password);
-    if (error) setError(error.message);
-    else nav('/login');
+    setError('');
+
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
+      email,
+      password
+    });
+
+    if (signUpError) {
+      setError(signUpError.message);
+      return;
+    }
+
+    const user = signUpData.user;
+    if (!user) {
+      setError('Unexpected error signing up.');
+      return;
+    }
+
+    const { error: profileError } = await supabase
+      .from('users')
+      .insert([{ id: user.id, username }]);
+
+    if (profileError) {
+      setError(profileError.message);
+      return;
+    }
+
+    navigate('/login');
   };
 
   return (
@@ -24,30 +49,43 @@ function SignUp() {
         <div className="form-group">
           <label>Email</label>
           <input
-            type="email" required
-            value={email}
-            onChange={e=>setEmail(e.target.value)}
+            type="email"
+            required
             className="form-input"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
+
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            required
+            className="form-input"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+        </div>
+
         <div className="form-group">
           <label>Password</label>
           <input
-            type="password" required
-            value={password}
-            onChange={e=>setPassword(e.target.value)}
+            type="password"
+            required
             className="form-input"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
+
         <button type="submit" className="button button--primary">
           Create Account
         </button>
+        <p className="auth-switch">
+          Already have an account? <Link to="/login">Log In</Link>
+        </p>
       </form>
-      <p>
-        Already have an account? <Link to="/login">Log In</Link>
-      </p>
     </div>
   );
 }
-
-export default SignUp;

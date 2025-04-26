@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { supabase } from '../client';
 
 const ROLE_OPTIONS = [
@@ -19,6 +19,7 @@ const JOB_OPTIONS = {
 };
 
 function CreateCharacter() {
+  const { staticId } = useParams();
   const navigate = useNavigate();
 
   const [name, setName]       = useState('');
@@ -47,22 +48,36 @@ function CreateCharacter() {
     setLoading(true);
     setError(null);
 
-    const { data, error: supaErr } = await supabase
-      .from('characters')
-      .insert([{ name, role, jobs, bio }])
-      .single();
+    const { data: charData, error: charErr } = await supabase
+    .from('characters')
+    .insert([{ name, role, jobs, bio }])
+    .select()       // ask Supabase to return the new row
+    .single();
+
+    if (charErr) {
+      setError(charErr.message);
+      setLoading(false);
+      return;
+    }
+
+    const { error: linkErr } = await supabase
+      .from('static_members')
+      .insert([{ static_id: staticId, character_id: charData.id }]);
 
     setLoading(false);
-    if (supaErr) {
-      setError(supaErr.message);
+
+    if (linkErr) {
+      console.error('Link to static failed:', linkErr);
+      setError(linkErr.message);
     } else {
-      navigate('/static');
+      // 3) On success, go back to the static detail page
+      navigate(`/static/${staticId}`);
     }
   };
 
   return (
     <div className="page page--create-character">
-      <h2 className="page-title">Create a New Character</h2>
+      <h2 className="page-title">Add Character to Static</h2>
 
       <form className="form form--create" onSubmit={handleSubmit}>
         {error && <p className="form-error">{error}</p>}
