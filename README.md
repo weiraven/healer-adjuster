@@ -1,14 +1,4 @@
-# Web Development Project 7 - *Healer Adjuster*
-
-Submitted by: **Raven Wei**
-
-This web app: **FFXIV raid planning perfected at a healer's expense.**
-
-Time spent: **15** hours spent in total
-
-## Required Features
-
-The following **required** functionality is completed:
+## Features
 
 - [x] **Web app includes a create form that allows the user to create posts**
   - Form requires users to add a post title
@@ -38,13 +28,9 @@ The following **required** functionality is completed:
   - After a user creates a new post, they can go back and edit the post
   - A previously created post can be deleted from its post page
 
-The following **optional** features are implemented:
-
 - [x] Web app implements ACTUAL authentication.
   - Users can only edit and delete posts or delete comments by entering the secret key, which is set by the user during post creation
   - Only the original user author of a post can update or delete it
-
-The following **additional** features are implemented:
 
 - [x] Logged in users can create additional teams (statics) and add members to them.
 - [x] Users can schedule events for their static using a calendar feature.
